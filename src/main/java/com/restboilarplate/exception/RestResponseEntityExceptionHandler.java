@@ -69,5 +69,31 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
                 .body(message);
     }
 
+    /** Already exists exception
+     *
+     * */
+    @ExceptionHandler(AlreadyExistsException.class)
+    public ResponseEntity<ErrorMessage> alreadyExistsException(AlreadyExistsException exception, WebRequest request) {
+        List<String> details = new ArrayList<>();
+        ErrorMessage message = new ErrorMessage(HttpStatus.FOUND,
+                exception.getMessage(),details);
+
+        return ResponseEntity.status(HttpStatus.FOUND)
+                .body(message);
+        //ok
+
+    }
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<ErrorMessage> invalidCredentialsException(InvalidCredentialsException exception,
+                                                                    WebRequest request) {
+        List<String> details = new ArrayList<>();
+        ErrorMessage message = new ErrorMessage(HttpStatus.BAD_REQUEST,
+                exception.getMessage(),details);
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(message);
+
+    }
+
 
 }

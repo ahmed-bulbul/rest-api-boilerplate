@@ -1,21 +1,18 @@
 package com.restboilarplate.acl.auth.entity;
 
 import com.restboilarplate.entity.baseEntity.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "acl_roles")
+@Table(name = "ACL_ROLES")
 public class Role extends BaseEntity {
     private String roleName;
     private String description;

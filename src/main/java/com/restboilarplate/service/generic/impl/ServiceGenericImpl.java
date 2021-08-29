@@ -17,22 +17,22 @@ public class ServiceGenericImpl<T extends BaseEntity> implements ServiceGeneric<
 
 
     @Override
-    public List<T> findAll() throws CustomException {
+    public List<T> findAll() {
         return genericRepository.findAll();
     }
 
     @Override
-    public T save(T entity) throws CustomException {
+    public T save(T entity) {
         return genericRepository.save(entity);
     }
 
     @Override
-    public void delete(Long id) throws CustomException {
+    public void delete(Long id) {
         genericRepository.deleteById(id);
     }
 
     @Override
-    public Optional<T> findById(Long id) throws NotFoundException {
+    public Optional<T> findById(Long id)  {
         return genericRepository.findById(id);
     }
 }
