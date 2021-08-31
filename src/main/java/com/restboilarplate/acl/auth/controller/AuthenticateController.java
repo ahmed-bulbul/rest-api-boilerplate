@@ -71,13 +71,7 @@ public class AuthenticateController {
     //return the details of current user
     @GetMapping("/currentUser")
     public User getCurrentUser(Principal principal){
-        String name;
-        String loginCode= (String) session.getAttribute("loginCode");
-        if (loginCode!=null)
-            name=loginCode;
-        else
-            name=principal.getName();
-        return ((User)this.userDetailsService.loadUserByUsername(name));
+        return ((User)this.userDetailsService.loadUserByUsername(principal.getName()));
     }
 
 }

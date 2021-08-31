@@ -1,5 +1,7 @@
 package com.restboilarplate.acl.security.filter;
 
+import com.restboilarplate.service.system.SystemMenuAuthService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
@@ -10,10 +12,11 @@ import org.springframework.security.core.Authentication;
 import java.util.Collection;
 
 public class MyAccessDecisionManager implements AccessDecisionManager {
-//
-//    @Autowired
-//    private CustomUserAuthorizationService customUserAuthorizationService;
 
+    @Autowired
+    private SystemMenuAuthService systemMenuAuthService;
+
+    @SneakyThrows
     @Override
     public void decide(Authentication authentication, Object o, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
 
@@ -26,6 +29,15 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
         String reqUrl = String.valueOf(configAttributes.toArray()[0]);
 
         if (reqUrl.equals("EMPTY")){
+            throw new AccessDeniedException("not allow");
+        }
+//        else{
+//            System.out.println("Form Decision Manager "+this.systemMenuAuthService.checkLoggedIn());
+//            return;
+//        }
+        if(systemMenuAuthService.isAuthorised(reqUrl)){
+            return;
+        }else{
             throw new AccessDeniedException("not allow");
         }
 

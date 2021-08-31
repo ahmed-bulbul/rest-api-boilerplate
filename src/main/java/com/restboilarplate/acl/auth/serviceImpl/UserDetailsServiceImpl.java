@@ -22,21 +22,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user=null;
-
-        User userByUserName = this.userRepository.findByUsername(username);
-        if(userByUserName!=null){
-            user=userByUserName;
-        }
-//        User userByLoginCode = this.userRepository.findByLoginCode(username);
-//        if (userByLoginCode!=null){
-//            user=userByLoginCode;
-//        }
+        User user = this.userRepository.findByUsername(username);
         if(user==null){
             System.out.println("User not found");
             throw new UsernameNotFoundException("No user found !!");
         }
-       // session.setAttribute("loginCode",user.getLoginCode());
         return user;
     }
 }

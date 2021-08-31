@@ -45,7 +45,6 @@ public class User extends BaseEntity implements UserDetails {
     @JoinTable(	name = "acl_user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    @JsonIgnore
     private Set<Role> roles = new HashSet<>();
 
     @Override

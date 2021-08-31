@@ -17,13 +17,14 @@ public class SystemMenu  extends BaseEntity {
 
 
     @Column(unique = true)
-    String code; // menuCode is unique for all, if needed then user will add menuCode+orgCode
+    String code;
     String description;
 
-    String entityName;
-    String openUrl;
+    String name;
+    String url;
+    String requestUrl;
     Integer sequence;
-    String iconHtml;
+    String icon;
     Boolean hasChild;
     Boolean visibleToAll;
     String chkAuthorization;
@@ -37,15 +38,26 @@ public class SystemMenu  extends BaseEntity {
     Boolean isActive;
 
 
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "parent_menu_id", referencedColumnName = "id")
     SystemMenu parentMenu;
 
-    @OneToMany(mappedBy ="parentMenu")
-    public List<SystemMenu> children = new ArrayList<>();
+//    @OneToMany(mappedBy ="parentMenu")
+//    public List<SystemMenu> children = new ArrayList<>();
 
     String parentMenuCode;
 
     Boolean superAdminAccessOnly;
     Boolean adminAccessOnly;
+
+    public SystemMenu(String code, String description, String openUrl, String iconHtml, Boolean isActive, Integer sequence) {
+        this.code = code;
+        this.description = description;
+        this.url = openUrl;
+        this.icon = iconHtml;
+        this.isActive = isActive;
+        this.sequence = sequence;
+//        this.parentMenu = parentMenu;
+    }
 }
