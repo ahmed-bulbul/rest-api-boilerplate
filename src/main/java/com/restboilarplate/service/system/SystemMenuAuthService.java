@@ -57,16 +57,12 @@ public class SystemMenuAuthService {
     public boolean checkSystemMenuAuth(String username, SystemMenu systemMenu) {
         SystemMenuAuthorization systemMenuAuthorization =
                 this.systemMenuAuthorizationRepository.findByUsernameAndSystemMenu(username,systemMenu);
-        System.out.println(systemMenuAuthorization.getMenuCode()+" SYSSCCOOOOO");
         if (systemMenuAuthorization!=null) {
-            System.out.println("GOT IT");
             return true;
         }else{
             return false;
         }
     }
-
-
 
     public boolean isAuthorised(String reqUrl) throws NotFoundException {
 
@@ -76,7 +72,6 @@ public class SystemMenuAuthService {
         if (systemMenu!=null) {
             for (Role role : roles) {
                 if (systemMenu.getAdminAccessOnly() && (role.getRoleName().equals("ROLE_ADMIN") || role.getRoleName().equals("ROLE_SUPER_ADMIN"))) {
-                    System.out.println(role.getRoleName()+" ROLE NAME=======");
                         return true;
                 }
                 else {

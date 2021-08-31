@@ -31,22 +31,12 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
         if (reqUrl.equals("EMPTY")){
             throw new AccessDeniedException("not allow");
         }
-//        else{
-//            System.out.println("Form Decision Manager "+this.systemMenuAuthService.checkLoggedIn());
-//            return;
-//        }
+
         if(systemMenuAuthService.isAuthorised(reqUrl)){
             return;
         }else{
             throw new AccessDeniedException("not allow");
         }
-
-
-//        if (!customUserAuthorizationService.check(reqUrl)){
-//            throw new AccessDeniedException("not allow");
-//        }else {
-//            return;
-//        }
 
     }
 
