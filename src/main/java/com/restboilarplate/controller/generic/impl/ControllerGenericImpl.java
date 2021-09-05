@@ -2,6 +2,7 @@ package com.restboilarplate.controller.generic.impl;
 
 
 import com.restboilarplate.controller.generic.ControllerGeneric;
+import com.restboilarplate.dto.query.CustomQueryDTO;
 import com.restboilarplate.entity.baseEntity.BaseEntity;
 import com.restboilarplate.exception.CustomException;
 import com.restboilarplate.exception.NotFoundException;
@@ -33,7 +34,7 @@ public class ControllerGenericImpl<T extends BaseEntity> implements ControllerGe
     }
 
     @Override
-    @GetMapping("/fetchAll")
+    @GetMapping("/getAll")
     public ResponseEntity<T> findAll() throws CustomException {
         try {
             return new ResponseEntity(genericService.findAll(), HttpStatus.OK);
@@ -57,7 +58,7 @@ public class ControllerGenericImpl<T extends BaseEntity> implements ControllerGe
     }
 
     @Override
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") Long id) throws CustomException {
         try {
             genericService.delete(id);
@@ -66,5 +67,18 @@ public class ControllerGenericImpl<T extends BaseEntity> implements ControllerGe
             throw new CustomException("Error in deleting data");
         }
     }
+
+    @Override
+    @PutMapping("/update")
+    public ResponseEntity<Object> update(T entity) throws CustomException {
+        try {
+            return new ResponseEntity(genericService.save(entity), HttpStatus.OK);
+        } catch (Exception e) {
+            throw new CustomException("Error in updating data");
+        }
+    }
+
+
+
 
 }

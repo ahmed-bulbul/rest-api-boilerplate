@@ -7,7 +7,7 @@ import com.restboilarplate.service.generic.ServiceGeneric;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-public interface UserService extends ServiceGeneric<User> {
+public interface IUserService extends ServiceGeneric<User> {
 
     //creating user
     public User createUser(User user, HttpServletRequest request) throws Exception;

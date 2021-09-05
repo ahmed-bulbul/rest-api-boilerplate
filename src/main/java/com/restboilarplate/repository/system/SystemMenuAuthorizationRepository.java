@@ -10,4 +10,6 @@ public interface SystemMenuAuthorizationRepository extends GenericRepository<Sys
     SystemMenuAuthorization findBySystemMenu(SystemMenu menuInst_system);
 
     SystemMenuAuthorization findByUsernameAndSystemMenu(String username, SystemMenu systemMenu);
+
+    SystemMenuAuthorization findByUsername(String username);
 }

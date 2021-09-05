@@ -23,6 +23,7 @@ public class SystemMenu  extends BaseEntity {
     String name;
     String url;
     String requestUrl;
+    String customUrl;
     Integer sequence;
     String icon;
     Boolean hasChild;
@@ -32,6 +33,9 @@ public class SystemMenu  extends BaseEntity {
     Boolean leftSideMenu;
     Boolean dashboardMenu;
     Boolean mainHeaderMenu;
+    String urlCustom;
+    String entityName;
+
 
     Boolean isChild;
     Boolean isOpenNewTab;
@@ -49,15 +53,16 @@ public class SystemMenu  extends BaseEntity {
     String parentMenuCode;
 
     Boolean superAdminAccessOnly;
-    Boolean adminAccessOnly;
+    Boolean adminAccessOnly=false;
 
-    public SystemMenu(String code, String description, String openUrl, String iconHtml, Boolean isActive, Integer sequence) {
+    public SystemMenu(String code, String description, String openUrl, String iconHtml, Boolean isActive, Integer sequence,Boolean adminAccessOnly) {
         this.code = code;
         this.description = description;
         this.url = openUrl;
         this.icon = iconHtml;
         this.isActive = isActive;
         this.sequence = sequence;
+        this.adminAccessOnly=adminAccessOnly;
 //        this.parentMenu = parentMenu;
     }
 }

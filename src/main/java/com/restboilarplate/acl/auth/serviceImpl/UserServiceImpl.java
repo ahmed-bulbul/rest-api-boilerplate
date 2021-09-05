@@ -3,7 +3,7 @@ package com.restboilarplate.acl.auth.serviceImpl;
 import com.restboilarplate.acl.auth.entity.User;
 import com.restboilarplate.acl.auth.repository.RoleRepository;
 import com.restboilarplate.acl.auth.repository.UserRepository;
-import com.restboilarplate.acl.auth.service.UserService;
+import com.restboilarplate.acl.auth.service.IUserService;
 import com.restboilarplate.exception.AlreadyExistsException;
 import com.restboilarplate.exception.NotFoundException;
 import com.restboilarplate.service.generic.impl.ServiceGenericImpl;
@@ -19,7 +19,7 @@ import java.util.Objects;
 
 
 @Service
-public class UserServiceImpl extends ServiceGenericImpl<User> implements UserService {
+public class UserServiceImpl extends ServiceGenericImpl<User> implements IUserService {
 
     @Autowired
     private UserRepository userRepository;

@@ -23,19 +23,22 @@ public class SystemMenuAuthorization extends BaseEntity {
 
     Boolean canSee;
     Integer sequence;
-    Boolean createPermission;
-    Boolean updatePermission;
-    Boolean deletePermission;
+    private String authCreate="N"; // create for C
+    private String authRead="N"; // read for R
+    private String authUpdate="N"; // update for U
+    private String authDelete="N"; // delete for D
+    private String authQuery="N";  // query for Q
+    private String authSingle="N"; // single For S
+    private String authCustom="N";
 
-    public SystemMenuAuthorization(String menuCode, String parentMenuCode, String username, SystemMenu systemMenu, Boolean canSee, Integer sequence, Boolean createPermission, Boolean updatePermission, Boolean deletePermission) {
+
+    public SystemMenuAuthorization(String menuCode, String parentMenuCode, String username, SystemMenu systemMenu, Boolean canSee, Integer sequence) {
         this.menuCode = menuCode;
         this.parentMenuCode = parentMenuCode;
         this.username = username;
         this.systemMenu = systemMenu;
         this.canSee = canSee;
         this.sequence = sequence;
-        this.createPermission = createPermission;
-        this.updatePermission = updatePermission;
-        this.deletePermission = deletePermission;
+
     }
 }

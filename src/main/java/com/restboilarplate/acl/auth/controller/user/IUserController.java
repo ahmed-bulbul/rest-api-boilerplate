@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-public interface UserController extends ControllerGeneric<User> {
+public interface IUserController extends ControllerGeneric<User> {
     public User createUser(@Valid @RequestBody SignupRequest signUpRequest, HttpServletRequest request) throws Exception;
 }

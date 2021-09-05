@@ -7,6 +7,9 @@ import com.restboilarplate.repository.generic.GenericRepository;
 import com.restboilarplate.service.generic.ServiceGeneric;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +17,9 @@ public class ServiceGenericImpl<T extends BaseEntity> implements ServiceGeneric<
 
     @Autowired
     protected GenericRepository<T> genericRepository;
+
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
 
 
     @Override
@@ -35,4 +41,13 @@ public class ServiceGenericImpl<T extends BaseEntity> implements ServiceGeneric<
     public Optional<T> findById(Long id)  {
         return genericRepository.findById(id);
     }
+
+
+    @Override
+    public T update(T entity) throws CustomException {
+        return genericRepository.save(entity);
+    }
+
+
+
 }

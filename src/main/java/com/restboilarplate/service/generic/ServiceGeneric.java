@@ -13,5 +13,6 @@ public interface ServiceGeneric<T extends BaseEntity>  {
     T save(T entity) throws CustomException;
     void delete(Long id) throws CustomException;
     Optional<T> findById(Long id) throws NotFoundException;
+    T update(T entity) throws CustomException;
 }
 

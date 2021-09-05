@@ -26,6 +26,7 @@ import java.util.Set;
 @Table(name = "ACL_USERS")
 public class User extends BaseEntity implements UserDetails {
 
+
     @NotBlank(message = "*Name is mandatory")
     @Column(name = "USERNAME", length = 15, nullable = false, unique = true)
     private String username;

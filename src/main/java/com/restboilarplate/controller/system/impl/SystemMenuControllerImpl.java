@@ -17,10 +17,23 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 public class SystemMenuControllerImpl extends ControllerGenericImpl<SystemMenu> implements SystemMenuController{
 
+
+    String prvString = "";
+    public String chkGlobalAuth(String entityName){
+        return "CR-D";
+    }
+
+    public SystemMenuControllerImpl() {
+        String prvString = this.chkGlobalAuth("SystemMenu");
+        System.out.println(prvString);
+        this.prvString = prvString;
+    }
+
     @GetMapping("/auth")
     public String auth(){
         return "Menu/auth =========Got it";
     }
+
     @Override
     public ResponseEntity<Object> save(SystemMenu entity) throws CustomException {
         return super.save(entity);
@@ -38,6 +51,14 @@ public class SystemMenuControllerImpl extends ControllerGenericImpl<SystemMenu> 
 
     @Override
     public ResponseEntity<String> delete(Long id) throws CustomException {
+        if(!this.prvString.contains("D")) {
+            return ResponseEntity.ok("");
+        }
         return super.delete(id);
+    }
+
+    @Override
+    public ResponseEntity<Object> update(SystemMenu entity) throws CustomException {
+        return super.update(entity);
     }
 }

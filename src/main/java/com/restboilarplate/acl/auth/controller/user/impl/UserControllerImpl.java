@@ -1,11 +1,11 @@
 package com.restboilarplate.acl.auth.controller.user.impl;
 
-import com.restboilarplate.acl.auth.controller.user.UserController;
+import com.restboilarplate.acl.auth.controller.user.IUserController;
 import com.restboilarplate.acl.auth.entity.Role;
 import com.restboilarplate.acl.auth.entity.User;
 import com.restboilarplate.acl.auth.entity.request.SignupRequest;
 import com.restboilarplate.acl.auth.repository.RoleRepository;
-import com.restboilarplate.acl.auth.service.UserService;
+import com.restboilarplate.acl.auth.service.IUserService;
 import com.restboilarplate.controller.generic.impl.ControllerGenericImpl;
 import com.restboilarplate.exception.CustomException;
 import com.restboilarplate.exception.NotFoundException;
@@ -24,10 +24,10 @@ import java.util.Set;
 @RestController
 @RequestMapping("/user")
 @CrossOrigin("*")
-public class UserControllerImpl extends ControllerGenericImpl<User> implements UserController {
+public class UserControllerImpl extends ControllerGenericImpl<User> implements IUserController {
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;

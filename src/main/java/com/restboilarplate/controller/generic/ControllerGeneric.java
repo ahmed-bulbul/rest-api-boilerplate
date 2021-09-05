@@ -16,4 +16,7 @@ public interface ControllerGeneric<T extends BaseEntity>  {
     ResponseEntity<T> findById(@PathVariable Long id) throws NotFoundException, CustomException;
 
     ResponseEntity<String> delete(@PathVariable Long id) throws CustomException;
+
+    ResponseEntity<Object>update(@RequestBody T entity) throws CustomException;
+
 }
