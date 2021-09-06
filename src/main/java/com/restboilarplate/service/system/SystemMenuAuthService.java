@@ -72,40 +72,48 @@ public class SystemMenuAuthService {
 
         SystemMenu systemMenu=this.systemMenuRepository.findSystemMenuByUrl("/"+firstPath);
         if (systemMenu!=null){
+            System.out.println("USERNAME"+username+ " Sysmennu"+systemMenu);
             SystemMenuAuthorization systemMenuAuthorization = this.systemMenuAuthorizationRepository.findByUsernameAndSystemMenu(username,systemMenu);
 
-            String authCreate=systemMenuAuthorization.getAuthCreate();
-            String authRead=systemMenuAuthorization.getAuthRead();
-            String authUpdate=systemMenuAuthorization.getAuthUpdate();
-            String authDelete=systemMenuAuthorization.getAuthDelete();
-            String authQuery=systemMenuAuthorization.getAuthQuery();
-            String authSingle=systemMenuAuthorization.getAuthSingle();
-            String authCustom=systemMenuAuthorization.getAuthCustom();
+            if (systemMenuAuthorization!=null){
+                String authCreate=systemMenuAuthorization.getAuthCreate();
+                String authRead=systemMenuAuthorization.getAuthRead();
+                String authUpdate=systemMenuAuthorization.getAuthUpdate();
+                String authDelete=systemMenuAuthorization.getAuthDelete();
+                String authQuery=systemMenuAuthorization.getAuthQuery();
+                String authSingle=systemMenuAuthorization.getAuthSingle();
+                String authCustom=systemMenuAuthorization.getAuthCustom();
 
-            if (authCreate.equals("C")){
-                if(secondPath.equals("create"))
-                    return true;
+                if (authCreate.equals("C")){
+                    System.out.println("Create Permission :C: ");
+                    if(secondPath.equals("create"))
+                        return true;
+                }
+                if (authRead.equals("R")){
+                    System.out.println("Read Permission :R: ");
+                    if(secondPath.equals("getAll"))
+                        return true;
+                }
+                if (authUpdate.equals("U")){
+                    if(secondPath.equals("update"))
+                        return true;
+                }
+                if (authDelete.equals("D")){
+                    if(secondPath.equals("delete"))
+                        return true;
+                }
+                if (authSingle.equals("S")){
+                    if(secondPath.equals("get"))
+                        return true;
+                }
+                if(authQuery.equals("Q")){
+                    if(secondPath.equals("query"))
+                        return true;
+                }
+            }else{
+                return false;
             }
-            if (authRead.equals("R")){
-                if(secondPath.equals("getAll"))
-                    return true;
-            }
-            if (authUpdate.equals("U")){
-                if(secondPath.equals("update"))
-                    return true;
-            }
-            if (authDelete.equals("D")){
-                if(secondPath.equals("delete"))
-                    return true;
-            }
-            if (authSingle.equals("S")){
-                if(secondPath.equals("get"))
-                    return true;
-            }
-            if(authQuery.equals("Q")){
-                if(secondPath.equals("query"))
-                    return true;
-            }
+
 
 //            System.out.println(viewAllPermission+"VIEW ALL PER =========");
         }

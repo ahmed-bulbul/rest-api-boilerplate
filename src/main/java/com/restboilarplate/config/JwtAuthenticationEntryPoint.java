@@ -1,4 +1,4 @@
-package com.restboilarplate.acl.config;
+package com.restboilarplate.config;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

@@ -180,7 +180,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         SystemMenu menuInst_System;
         boolean exist = systemMenuRepository.existsByCode("SYSTEM");
         if(!exist){
-            menuInst_System = new SystemMenu("SYSTEM", "System", "/systemRootMenu", "<i class=\"nav-icon fab fa-windows\"></i>", true, 100,true);
+            menuInst_System = new SystemMenu("SYSTEM", "System", "/systemRootMenu", "<i class=\"nav-icon fab fa-windows\"></i>", true, 100,true,"/systemRootMenu","System",null);
             menuInst_System = systemMenuRepository.save(menuInst_System);
         } else {
             menuInst_System = systemMenuRepository.findByCode("SYSTEM");
@@ -197,7 +197,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
         SystemMenu menuInst_User = systemMenuRepository.getByCode("AUTH_USER");
         if(menuInst_User == null){
-            SystemMenu menuInst_user = new SystemMenu("AUTH_USER", "User", "/user", "", true, 110,true);
+            SystemMenu menuInst_user = new SystemMenu("AUTH_USER", "User", "/user", "", true, 110,true,"/user","System",null);
             menuInst_user = systemMenuRepository.save(menuInst_user);
             menuInst_user.setParentMenu(menuInst_System);
             systemMenuRepository.save(menuInst_user);
@@ -213,7 +213,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
         SystemMenu menuInst_Role = systemMenuRepository.getByCode("AUTH_ROLE");
         if(menuInst_Role == null){
-            SystemMenu menuInst_role= new SystemMenu("AUTH_ROLE", "Role", "/role", "", true, 120,true);
+            SystemMenu menuInst_role= new SystemMenu("AUTH_ROLE", "Role", "/role", "", true, 120,true,"/role","System",null);
             menuInst_role = systemMenuRepository.save(menuInst_role);
             menuInst_role.setParentMenu(menuInst_System);
             systemMenuRepository.save(menuInst_role);
@@ -228,7 +228,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
         SystemMenu menuInst_UserRoleChk = systemMenuRepository.getByCode("AUTH_USER_ROLE");
         if(menuInst_UserRoleChk == null){
-            SystemMenu menuInst_UserRole= new SystemMenu("AUTH_USER_ROLE", "User Role", "/userrole", "", true, 130,true);
+            SystemMenu menuInst_UserRole= new SystemMenu("AUTH_USER_ROLE", "User Role", "/userrole", "", true, 130,true,"/userrole","System",null);
             menuInst_UserRole = systemMenuRepository.save(menuInst_UserRole);
             menuInst_UserRole.setParentMenu(menuInst_System);
             systemMenuRepository.save(menuInst_UserRole);
@@ -243,7 +243,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
         SystemMenu menuInst_RequestMapChk = systemMenuRepository.getByCode("AUTH_REQUEST_MAP");
         if(menuInst_RequestMapChk == null){
-            SystemMenu menuInst_RequestMap= new SystemMenu("AUTH_REQUEST_MAP", "Request Map", "/requesturl", "", true, 140,true);
+            SystemMenu menuInst_RequestMap= new SystemMenu("AUTH_REQUEST_MAP", "Request Map", "/requesturl", "", true, 140,true,"/requesturl","System",null);
             menuInst_RequestMap = systemMenuRepository.save(menuInst_RequestMap);
             menuInst_RequestMap.setParentMenu(menuInst_System);
             systemMenuRepository.save(menuInst_RequestMap);
@@ -258,7 +258,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
         SystemMenu menuInst_MenuDefChk = systemMenuRepository.getByCode("SYS_MENU_DEF");
         if(menuInst_MenuDefChk == null){
-            SystemMenu menuInst_MenuDef= new SystemMenu("SYS_MENU_DEF", "Menu Definition", "/menu", "", true, 150,true);
+            SystemMenu menuInst_MenuDef= new SystemMenu("SYS_MENU_DEF", "Menu Definition", "/menu", "", true, 150,true,"/menu","System",null);
             menuInst_MenuDef = systemMenuRepository.save(menuInst_MenuDef);
             menuInst_MenuDef.setParentMenu(menuInst_System);
             systemMenuRepository.save(menuInst_MenuDef);
@@ -274,7 +274,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
         SystemMenu menuInst_sysMenuAuthorizationChk = systemMenuRepository.getByCode("SYS_MENU_AUTH");
         if (menuInst_sysMenuAuthorizationChk==null){
-            SystemMenu menuInst_sysMenuAuthorization= new SystemMenu("SYS_MENU_AUTH", "Menu Authorization", "/menu/auth", "", true, 155,true);
+            SystemMenu menuInst_sysMenuAuthorization= new SystemMenu("SYS_MENU_AUTH", "Menu Authorization", "/menu/auth", "", true, 155,true,"/menu/auth","System",null);
             menuInst_sysMenuAuthorization = systemMenuRepository.save(menuInst_sysMenuAuthorization);
             menuInst_sysMenuAuthorization.setParentMenu(menuInst_System);
             systemMenuRepository.save(menuInst_sysMenuAuthorization);
@@ -360,11 +360,6 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
             this.authTypeRepository.save(authType);
         }
     }
-
-
-
-
-
 
     @Override
     public void run(String... args) throws Exception {

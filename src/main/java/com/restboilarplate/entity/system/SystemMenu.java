@@ -1,5 +1,6 @@
 package com.restboilarplate.entity.system;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.restboilarplate.entity.baseEntity.BaseEntity;
 import lombok.*;
 
@@ -25,7 +26,6 @@ public class SystemMenu  extends BaseEntity {
     String requestUrl;
     String customUrl;
     Integer sequence;
-    String icon;
     Boolean hasChild;
     Boolean visibleToAll;
     String chkAuthorization;
@@ -41,21 +41,30 @@ public class SystemMenu  extends BaseEntity {
     Boolean isOpenNewTab;
     Boolean isActive;
 
+    // for ngx-admin template
+    private String title;
+    private String icon;
+    private String link;
+    private String home;
 
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "parent_menu_id", referencedColumnName = "id")
+    @JsonIgnore
     SystemMenu parentMenu;
 
-//    @OneToMany(mappedBy ="parentMenu")
-//    public List<SystemMenu> children = new ArrayList<>();
+    @OneToMany(mappedBy ="parentMenu")
+    public List<SystemMenu> children = new ArrayList<>();
 
     String parentMenuCode;
 
     Boolean superAdminAccessOnly;
     Boolean adminAccessOnly=false;
 
-    public SystemMenu(String code, String description, String openUrl, String iconHtml, Boolean isActive, Integer sequence,Boolean adminAccessOnly) {
+
+
+    public SystemMenu(String code, String description, String openUrl, String iconHtml, Boolean isActive,
+                      Integer sequence,Boolean adminAccessOnly,String link,String title,String home) {
         this.code = code;
         this.description = description;
         this.url = openUrl;
@@ -63,6 +72,10 @@ public class SystemMenu  extends BaseEntity {
         this.isActive = isActive;
         this.sequence = sequence;
         this.adminAccessOnly=adminAccessOnly;
+        this.link=link;
+        this.title=title;
+        this.home=home;
+
 //        this.parentMenu = parentMenu;
     }
 }

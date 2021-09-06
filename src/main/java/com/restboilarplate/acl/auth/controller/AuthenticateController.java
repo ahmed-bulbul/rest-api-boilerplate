@@ -5,7 +5,7 @@ import com.restboilarplate.acl.auth.entity.User;
 import com.restboilarplate.acl.auth.entity.jwt.JwtRequest;
 import com.restboilarplate.acl.auth.entity.jwt.JwtResponse;
 import com.restboilarplate.acl.auth.serviceImpl.UserDetailsServiceImpl;
-import com.restboilarplate.acl.config.JwtUtils;
+import com.restboilarplate.config.JwtUtils;
 import com.restboilarplate.exception.InvalidCredentialsException;
 import com.restboilarplate.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

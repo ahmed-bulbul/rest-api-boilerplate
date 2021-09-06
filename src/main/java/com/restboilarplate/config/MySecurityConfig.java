@@ -1,4 +1,4 @@
-package com.restboilarplate.acl.config;
+package com.restboilarplate.config;
 
 
 import com.restboilarplate.acl.auth.serviceImpl.UserDetailsServiceImpl;

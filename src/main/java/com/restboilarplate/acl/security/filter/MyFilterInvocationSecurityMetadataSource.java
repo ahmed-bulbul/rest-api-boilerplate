@@ -40,32 +40,23 @@ public class MyFilterInvocationSecurityMetadataSource implements FilterInvocatio
                 || "/person/".equals(url)
                 || "/dev/create".equals(url)
                 || "/authType/create".equals(url)
+                || "/menu/admincoreui".equals(url)
                 || "/menu/query".equals(url)){
             return null;
         }
 
-//        ArrayList<String> attributes;
-//        attributes = this.getAttributesByURL(url); //Here Goes Code
-//        System.out.println("I am dynamic url permission............chk-1");
-//        System.out.println("User Request URL:------------------" + url);
-//        System.out.println("Required attributes for access:----" + attributes);
-//        System.out.println("I am dynamic url permission............chk-2");
-//
-//        return SecurityConfig.createList(String.valueOf(url));
-
-
-
         AuthType authType = this.authTypeRepository.findByAuthType("URL_BASED");
         if (authType!=null){
+            System.out.println("==========>>URL BASED PERMISSION>>=======");
             ArrayList<String> attributes;
             attributes = this.getAttributesByURL(url); //Here Goes Code
             System.out.println("I am dynamic url permission............chk-1");
             System.out.println("User Request URL:------------------" + url);
             System.out.println("Required attributes for access:----" + attributes);
             System.out.println("I am dynamic url permission............chk-2");
-
             return SecurityConfig.createList(String.valueOf(url));
         }else {
+            System.out.println("==========>>ROLE  BASED PERMISSION>>=======");
             ArrayList<String> attributes;
             attributes = this.getAttributesByURL2(url); //Here Goes Code
             System.out.println("I am dynamic url permission............chk-1");
@@ -79,6 +70,10 @@ public class MyFilterInvocationSecurityMetadataSource implements FilterInvocatio
 
     private ArrayList<String> getAttributesByURL(String url) {
         ArrayList<String> attributes = new ArrayList<>();
+
+//        String reqUrl = url;
+//        String[] urlArray = url.split("/");
+//        String firstPath = urlArray[1];
 
         SystemMenu entityOptional= this.systemMenuRepository.findSystemMenuByUrl(url);
         if(entityOptional !=null){
